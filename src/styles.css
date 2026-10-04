@@ -60,16 +60,20 @@ body {
   border: 2px solid white;
   border-radius: 50%;
   color: white;
-  font-weight: bold;
   margin: 0 5px;
   
-  /* Add these lines to block mobile selection and highlights */
+  /* Add these 3 lines to perfectly center the SVG icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   touch-action: none; 
   user-select: none;
   -webkit-user-select: none; 
-  -webkit-touch-callout: none; /* Stops the Android/iOS popup menu */
-  -webkit-tap-highlight-color: transparent; /* Stops the grey flash when tapping */
+  -webkit-touch-callout: none; 
+  -webkit-tap-highlight-color: transparent; 
 }
+
 
 
 
@@ -525,6 +529,13 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+/* Move the minimap to the top left */
+.minimap, canvas[class*="minimap"], canvas[class*="map"] {
+  top: 150px !important; /* Pushes it slightly below the clock */
+  bottom: auto !important; /* Removes it from the bottom */
+  left: 30px !important;
+  right: auto !important;
 }
 
 @keyframes hideSoundIcon {
