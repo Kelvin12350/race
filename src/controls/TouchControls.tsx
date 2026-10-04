@@ -1,12 +1,12 @@
 import { useStore, isControl } from '../store'
-
+import './TouchControls.css'
 
 export function TouchControls() {
   // Grab the identical actions object used by the Keyboard
   const actions = useStore((state) => state.actions)
 
   // Trigger true on touch down, false on release
-  const bindTouch = (actionName: string) => ({
+    const bindTouch = (actionName: string) => ({
     onPointerDown: (e: React.PointerEvent) => {
       e.preventDefault()
       if (isControl(actionName) && actions[actionName]) actions[actionName](true)
@@ -18,8 +18,12 @@ export function TouchControls() {
     onPointerLeave: (e: React.PointerEvent) => {
       e.preventDefault()
       if (isControl(actionName) && actions[actionName]) actions[actionName](false)
+    },
+    onContextMenu: (e: React.MouseEvent) => {
+      e.preventDefault() // This completely disables the long-press popup
     }
   })
+
 
   return (
     <div className="touch-controls-overlay">
