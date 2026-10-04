@@ -1,5 +1,5 @@
 import { useStore, isControl } from '../store'
-import './TouchControls.css'
+
 
 export function TouchControls() {
   // Grab the identical actions object used by the Keyboard
