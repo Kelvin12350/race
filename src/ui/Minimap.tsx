@@ -58,7 +58,8 @@ function MinimapTexture({ buffer }: { buffer: WebGLRenderTarget }): JSX.Element 
   return <OrthographicCameraComponent ref={camera} makeDefault={false} rotation={[-Math.PI / 2, 0, 0]} near={20} far={500} />
 }
 
-export function Minimap({ size = 200 }): JSX.Element {
+// 1. Reduced default size from 200 to 120 to make it smaller on mobile
+export function Minimap({ size = 120 }): JSX.Element {
   const player = useRef<Sprite>(null)
   const miniMap = useRef<Sprite>(null)
   const miniMapCamera = useRef<OrthographicCamera>(null)
@@ -75,10 +76,9 @@ export function Minimap({ size = 200 }): JSX.Element {
   const [, levelCenter, levelDimensions] = useLevelGeometricProperties()
   const chassisBody = useStore((state) => state.chassisBody)
   
-  // FIXED: Moved the map to the top left by changing the Math. 
-  // It now calculates from the top of the screen (height / 2) and drops down 150px to clear the clock.
+  // 2. Changed -150 to -110 so it tucks closer under the clock and doesn't hit the bottom buttons in landscape
   const screenPosition = useMemo(
-    () => new Vector3(width / -2 + size / 2 + 30, height / 2 - size / 2 - 150, 0), 
+    () => new Vector3(width / -2 + size / 2 + 30, height / 2 - size / 2 - 110, 0), 
     [height, width, size]
   )
 
