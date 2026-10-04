@@ -61,10 +61,16 @@ body {
   border-radius: 50%;
   color: white;
   font-weight: bold;
+  margin: 0 5px;
+  
+  /* Add these lines to block mobile selection and highlights */
   touch-action: none; 
   user-select: none;
-  margin: 0 5px;
+  -webkit-user-select: none; 
+  -webkit-touch-callout: none; /* Stops the Android/iOS popup menu */
+  -webkit-tap-highlight-color: transparent; /* Stops the grey flash when tapping */
 }
+
 
 
 .touch-dpad, .touch-actions {
