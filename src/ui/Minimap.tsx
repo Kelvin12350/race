@@ -74,7 +74,13 @@ export function Minimap({ size = 200 }): JSX.Element {
   } = useThree()
   const [, levelCenter, levelDimensions] = useLevelGeometricProperties()
   const chassisBody = useStore((state) => state.chassisBody)
-  const screenPosition = useMemo(() => new Vector3(width / -2 - size / -2 + 30, height / -2 - size / -2 + 30, 0), [height, width, size])
+  
+  // FIXED: Moved the map to the top left by changing the Math. 
+  // It now calculates from the top of the screen (height / 2) and drops down 150px to clear the clock.
+  const screenPosition = useMemo(
+    () => new Vector3(width / -2 + size / 2 + 30, height / 2 - size / 2 - 150, 0), 
+    [height, width, size]
+  )
 
   useFrame(() => {
     if (!miniMap.current || !miniMapCamera.current) return
